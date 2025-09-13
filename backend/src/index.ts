@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 
-
+import { flaky } from './middleware/flaky';
 import usersRouter from './routes/users';
 import tasksRouter from './routes/tasks';
 
@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
+app.use(flaky); // Use the flaky middleware
 
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
