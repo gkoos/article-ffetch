@@ -1,0 +1,33 @@
+# Node
+node_modules/
+
+# Build output
+/dist/
+/frontend/dist/
+/backend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.local
+
+/article
