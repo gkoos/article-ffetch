@@ -9,7 +9,7 @@ export function renderUserList(app: HTMLElement) {
   }
   async function update() {
     const { users, taskCounts } = await fetchUserListData();
-    app.innerHTML = `<h2>User List</h2><ul>${users.map((u, i) => `<li><a href="#" data-user="${u.id}">${u.name}</a> (${taskCounts[i]} tasks)</li>`).join('')}</ul>`;
+  app.innerHTML = `<h2>User List</h2><ul>${users.map((u: { id: number; name: string }, i: number) => `<li><a href="#" data-user="${u.id}">${u.name}</a> (${taskCounts[i]} tasks)</li>`).join('')}</ul>`;
     app.querySelectorAll('a[data-user]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
@@ -33,7 +33,7 @@ export function renderUserView(app: HTMLElement, userId: number) {
   }
   async function update() {
     const { user, tasks } = await fetchUserDetailsData(userId);
-    app.innerHTML = `<button id="back">Back</button><h2>${user.name}</h2><p>Email: ${user.email}</p><h3>Tasks</h3><ul>${tasks.map(t => `<li>${t.title} (${t.priority})</li>`).join('')}</ul>`;
+  app.innerHTML = `<button id="back">Back</button><h2>${user.name}</h2><p>Email: ${user.email}</p><h3>Tasks</h3><ul>${tasks.map((t: { title: string; priority: string }) => `<li>${t.title} (${t.priority})</li>`).join('')}</ul>`;
     document.getElementById('back')?.addEventListener('click', () => {
       userViewFirstLoad[userId] = true;
       clearInterval(userViewPollTimer);
